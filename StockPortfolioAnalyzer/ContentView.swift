@@ -1,21 +1,29 @@
-//
-//  ContentView.swift
-//  StockPortfolioAnalyzer
-//
-//  Created by Adam Balogun on 3/1/26.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @State private var portfolioViewModel = PortfolioViewModel()
+    @State private var selectedTab = 0
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView(selection: $selectedTab) {
+            PortfolioOverviewView(viewModel: portfolioViewModel)
+                .tabItem {
+                    Label("Portfolio", systemImage: "chart.pie.fill")
+                }
+                .tag(0)
+            
+            HoldingsListView(viewModel: portfolioViewModel)
+                .tabItem {
+                    Label("Holdings", systemImage: "list.bullet")
+                }
+                .tag(1)
+            
+            AddStockView(viewModel: portfolioViewModel)
+                .tabItem {
+                    Label("Add Stock", systemImage: "plus.circle.fill")
+                }
+                .tag(2)
         }
-        .padding()
     }
 }
 
