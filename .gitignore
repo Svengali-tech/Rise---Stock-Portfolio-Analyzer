@@ -1,0 +1,6 @@
+.qodo
+.DS_Store
+.gitattributes
+.env.local
+.env
+.env.example
